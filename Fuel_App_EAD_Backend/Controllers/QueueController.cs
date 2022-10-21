@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
@@ -38,11 +39,27 @@ namespace Fuel_App_EAD_Backend.Controllers
             MongoClient dbClient = new MongoClient(_configuration.GetConnectionString("FuelApp"));
 
             queue.QueueDate = DateTime.Now.ToString("dd/MM/yyyy");
-            queue.QueueTime = DateTime.Now.ToString("HH:mm:ss");
+            queue.QueueArrivalTime = DateTime.Now.ToString("HH:mm:ss");
+            queue.QueueDepatureTime = "";
 
             dbClient.GetDatabase("fuelappdb").GetCollection<Queue>("queue").InsertOne(queue);
 
             return new JsonResult("Added Successfully");
+        }
+
+        [HttpPut("departure/time/update/{id}")]
+        public JsonResult UpdateDepatureTime(String id)
+        {
+            MongoClient dbClient = new MongoClient(_configuration.GetConnectionString("FuelApp"));        
+           
+            var queueId = new ObjectId(id);
+            var filter = Builders<Queue>.Filter.Eq("_id", queueId);
+            var update = Builders<Queue>.Update.Set("QueueDepatureTime", DateTime.Now.ToString("HH:mm:ss"));
+            dbClient.GetDatabase("fuelappdb").GetCollection<Queue>("queue").UpdateOne(filter, update);
+            var updated_logout = dbClient.GetDatabase("fuelappdb").GetCollection<Queue>("queue").Find(queue => queue.Id == queueId).ToList();
+
+            return new JsonResult(updated_logout);
+        
         }
     }
 }

@@ -4,6 +4,7 @@ using Fuel_App_EAD_Backend.PasswordHashing;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
@@ -74,6 +75,21 @@ namespace Fuel_App_EAD_Backend.Controllers
                 return new JsonResult("Invalid User");
             }
             
+        }
+
+        [HttpPut("logout/{id}")]
+        public JsonResult logout(String id)
+        {
+            MongoClient dbClient = new MongoClient(_configuration.GetConnectionString("FuelApp"));
+      
+            var userId = new ObjectId(id);
+            var filter = Builders<User>.Filter.Eq("_id", userId);
+            var update = Builders<User>.Update.Set("LoginStatus", false);
+            dbClient.GetDatabase("fuelappdb").GetCollection<User>("user").UpdateOne(filter, update);
+            var updated_logout = dbClient.GetDatabase("fuelappdb").GetCollection<User>("user").Find(user => user.Id == userId).ToList();
+
+            return new JsonResult(updated_logout);            
+
         }
     }
 }

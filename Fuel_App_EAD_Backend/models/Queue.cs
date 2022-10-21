@@ -16,8 +16,10 @@ namespace Fuel_App_EAD_Backend.Controllers.models
 
         public string QueueDate { get; set; }
 
-        public string QueueTime { get; set; }  
-                    
+        public string QueueArrivalTime { get; set; }
+
+        public string QueueDepatureTime { get; set; }
+
         public string VehicleType { get; set; }
 
         public string FuelType { get; set; }

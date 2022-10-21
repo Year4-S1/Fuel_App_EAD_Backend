@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "F:\\4th year Semester 02\\EAD\\Assignment\\Fuel_App_EAD_Backend\\Fuel_App_EAD_Backend\\Fuel_App_EAD_Backend.csproj": {}
+    "F:\\4th year Semester 02\\EAD\\Assignment\\GitRepoBackend\\Fuel_App_EAD_Backend\\Fuel_App_EAD_Backend\\Fuel_App_EAD_Backend.csproj": {}
   },
   "projects": {
-    "F:\\4th year Semester 02\\EAD\\Assignment\\Fuel_App_EAD_Backend\\Fuel_App_EAD_Backend\\Fuel_App_EAD_Backend.csproj": {
+    "F:\\4th year Semester 02\\EAD\\Assignment\\GitRepoBackend\\Fuel_App_EAD_Backend\\Fuel_App_EAD_Backend\\Fuel_App_EAD_Backend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\4th year Semester 02\\EAD\\Assignment\\Fuel_App_EAD_Backend\\Fuel_App_EAD_Backend\\Fuel_App_EAD_Backend.csproj",
+        "projectUniqueName": "F:\\4th year Semester 02\\EAD\\Assignment\\GitRepoBackend\\Fuel_App_EAD_Backend\\Fuel_App_EAD_Backend\\Fuel_App_EAD_Backend.csproj",
         "projectName": "Fuel_App_EAD_Backend",
-        "projectPath": "F:\\4th year Semester 02\\EAD\\Assignment\\Fuel_App_EAD_Backend\\Fuel_App_EAD_Backend\\Fuel_App_EAD_Backend.csproj",
+        "projectPath": "F:\\4th year Semester 02\\EAD\\Assignment\\GitRepoBackend\\Fuel_App_EAD_Backend\\Fuel_App_EAD_Backend\\Fuel_App_EAD_Backend.csproj",
         "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
-        "outputPath": "F:\\4th year Semester 02\\EAD\\Assignment\\Fuel_App_EAD_Backend\\Fuel_App_EAD_Backend\\obj\\",
+        "outputPath": "F:\\4th year Semester 02\\EAD\\Assignment\\GitRepoBackend\\Fuel_App_EAD_Backend\\Fuel_App_EAD_Backend\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
