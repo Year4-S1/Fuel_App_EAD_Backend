@@ -14,7 +14,7 @@ namespace Fuel_App_EAD_Backend.Controllers.models
 
         public string FuelType { get; set; }
 
-        public Boolean FuelAvailability { get; set; }
+        public string FuelAvailability { get; set; }
 
         public float FuelAmount { get; set; }
     }

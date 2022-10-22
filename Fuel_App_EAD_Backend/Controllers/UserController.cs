@@ -57,13 +57,15 @@ namespace Fuel_App_EAD_Backend.Controllers
 
             var dbList = dbClient.GetDatabase("fuelappdb").GetCollection<User>("user").Find(user => user.UserPhoneNo == login.PhoneNo).ToList();
 
-            // Verify
+            // Verify the hash password
             var result = SecurePasswordHasher.Verify(login.Password, dbList[0].UserPassword);
 
             if (result == true)
             {
                 User user = dbList[0];
+                //filter by userId
                 var filter = Builders<User>.Filter.Eq("_id", user.Id);
+                //update the login status
                 var update = Builders<User>.Update.Set("LoginStatus", true );
                 dbClient.GetDatabase("fuelappdb").GetCollection<User>("user").UpdateOne(filter, update);
                 var updated_login = dbClient.GetDatabase("fuelappdb").GetCollection<User>("user").Find(user => user.UserPhoneNo == login.PhoneNo).ToList();
@@ -82,8 +84,11 @@ namespace Fuel_App_EAD_Backend.Controllers
         {
             MongoClient dbClient = new MongoClient(_configuration.GetConnectionString("FuelApp"));
       
+            //convert string id to mongodb bson objectId
             var userId = new ObjectId(id);
+            //filter by userId
             var filter = Builders<User>.Filter.Eq("_id", userId);
+            //update login status
             var update = Builders<User>.Update.Set("LoginStatus", false);
             dbClient.GetDatabase("fuelappdb").GetCollection<User>("user").UpdateOne(filter, update);
             var updated_logout = dbClient.GetDatabase("fuelappdb").GetCollection<User>("user").Find(user => user.Id == userId).ToList();

@@ -1,4 +1,6 @@
-﻿using Fuel_App_EAD_Backend.Controllers.models;
+﻿using DnsClient;
+using Fuel_App_EAD_Backend.Controllers.models;
+using Fuel_App_EAD_Backend.models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -40,6 +42,27 @@ namespace Fuel_App_EAD_Backend.Controllers
             dbClient.GetDatabase("fuelappdb").GetCollection<Station>("station").InsertOne(station);
 
             return new JsonResult("Added Successfully");
+        }
+
+        [HttpGet("search")]
+        public JsonResult SearchStation(SearchStation searchstation)
+        {
+            MongoClient dbClient = new MongoClient(_configuration.GetConnectionString("FuelApp"));
+
+            if (searchstation.StationName != null)
+            {           
+                var dbList = dbClient.GetDatabase("fuelappdb").GetCollection<Station>("station").Find(station => station.StationName.ToLower() == searchstation.StationName.ToLower()).ToList();
+
+                return new JsonResult(dbList);
+            }
+            else if (searchstation.StationLocation != null)
+            {             
+                var dbList = dbClient.GetDatabase("fuelappdb").GetCollection<Station>("station").Find(station => station.StationLocation.ToLower() == searchstation.StationLocation.ToLower()).ToList();
+                return new JsonResult(dbList);
+            }
+            else {
+                return new JsonResult("Please enter a value to search");
+            }            
         }
     }
 }
