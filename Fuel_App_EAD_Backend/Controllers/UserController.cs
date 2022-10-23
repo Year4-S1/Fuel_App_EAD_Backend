@@ -46,7 +46,7 @@ namespace Fuel_App_EAD_Backend.Controllers
 
             dbClient.GetDatabase("fuelappdb").GetCollection<User>("user").InsertOne(user);
 
-            return new JsonResult("Added Successfully");
+            return new JsonResult(user);
         }
 
         [HttpPost("login")]

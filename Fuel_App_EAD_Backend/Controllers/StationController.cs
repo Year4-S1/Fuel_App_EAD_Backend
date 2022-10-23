@@ -41,7 +41,7 @@ namespace Fuel_App_EAD_Backend.Controllers
 
             dbClient.GetDatabase("fuelappdb").GetCollection<Station>("station").InsertOne(station);
 
-            return new JsonResult("Added Successfully");
+            return new JsonResult(station);
         }
 
         [HttpGet("search")]
@@ -49,12 +49,14 @@ namespace Fuel_App_EAD_Backend.Controllers
         {
             MongoClient dbClient = new MongoClient(_configuration.GetConnectionString("FuelApp"));
 
+            //check if the stain name is not null
             if (searchstation.StationName != null)
             {           
                 var dbList = dbClient.GetDatabase("fuelappdb").GetCollection<Station>("station").Find(station => station.StationName.ToLower() == searchstation.StationName.ToLower()).ToList();
 
                 return new JsonResult(dbList);
             }
+            //check if the station location is not null
             else if (searchstation.StationLocation != null)
             {             
                 var dbList = dbClient.GetDatabase("fuelappdb").GetCollection<Station>("station").Find(station => station.StationLocation.ToLower() == searchstation.StationLocation.ToLower()).ToList();
