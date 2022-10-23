@@ -54,7 +54,7 @@ namespace Fuel_App_EAD_Backend.Controllers
            
             var queueId = new ObjectId(id);
             var filter = Builders<Queue>.Filter.Eq("_id", queueId);
-            var update = Builders<Queue>.Update.Set("QueueDepatureTime", DateTime.Now.ToString("HH:mm:ss"));
+            var update = Builders<Queue>.Update.Set("QueueDepatureTime", DateTime.Now.ToString("HH:mm:ss")).Set("Status", "Exit");
             dbClient.GetDatabase("fuelappdb").GetCollection<Queue>("queue").UpdateOne(filter, update);
             var updated_logout = dbClient.GetDatabase("fuelappdb").GetCollection<Queue>("queue").Find(queue => queue.Id == queueId).ToList();
 
