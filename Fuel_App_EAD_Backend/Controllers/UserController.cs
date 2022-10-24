@@ -52,7 +52,7 @@ namespace Fuel_App_EAD_Backend.Controllers
         [HttpPost("login")]
         public JsonResult Login(Login login)
         {
-            MongoClient dbClient = new MongoClient(_configuration.GetConnectionString("FuelApp"));           
+            MongoClient dbClient = new MongoClient(_configuration.GetConnectionString("FuelApp"));
 
 
             var dbList = dbClient.GetDatabase("fuelappdb").GetCollection<User>("user").Find(user => user.UserPhoneNo == login.PhoneNo).ToList();
@@ -71,7 +71,7 @@ namespace Fuel_App_EAD_Backend.Controllers
                 var updated_login = dbClient.GetDatabase("fuelappdb").GetCollection<User>("user").Find(user => user.UserPhoneNo == login.PhoneNo).ToList();
 
 
-                return new JsonResult(updated_login);
+                return new JsonResult(updated_login[0]);
             }
             else {
                 return new JsonResult("Invalid User");
@@ -93,7 +93,7 @@ namespace Fuel_App_EAD_Backend.Controllers
             dbClient.GetDatabase("fuelappdb").GetCollection<User>("user").UpdateOne(filter, update);
             var updated_logout = dbClient.GetDatabase("fuelappdb").GetCollection<User>("user").Find(user => user.Id == userId).ToList();
 
-            return new JsonResult(updated_logout);            
+            return new JsonResult(updated_logout[0]);            
 
         }
     }

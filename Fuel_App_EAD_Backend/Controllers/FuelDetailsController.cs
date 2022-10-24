@@ -38,7 +38,7 @@ namespace Fuel_App_EAD_Backend.Controllers
 
             var per_Station_fuel_list = dbClient.GetDatabase("fuelappdb").GetCollection<FuelDetails>("fueldetail").Find(fueldetail => fueldetail.StationId == id).ToList();
 
-            return new JsonResult(per_Station_fuel_list);
+            return new JsonResult(per_Station_fuel_list[0]);
         }
 
         [HttpPut("update/{id}")]
