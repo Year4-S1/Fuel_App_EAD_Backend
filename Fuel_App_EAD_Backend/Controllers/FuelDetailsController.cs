@@ -54,7 +54,7 @@ namespace Fuel_App_EAD_Backend.Controllers
             dbClient.GetDatabase("fuelappdb").GetCollection<FuelDetails>("fueldetail").UpdateOne(filter, update);
             var updated_fuel = dbClient.GetDatabase("fuelappdb").GetCollection<FuelDetails>("fueldetail").Find(fueldetail => fueldetail.Id == fuelId).ToList();
 
-            return new JsonResult(updated_fuel);
+            return new JsonResult(updated_fuel[0]);
         }
     }
 }

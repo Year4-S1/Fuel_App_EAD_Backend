@@ -65,7 +65,7 @@ namespace Fuel_App_EAD_Backend.Controllers
             //filtering the updated document
             var updated_logout = dbClient.GetDatabase("fuelappdb").GetCollection<Queue>("queue").Find(queue => queue.Id == queueId).ToList();
 
-            return new JsonResult(updated_logout);
+            return new JsonResult(updated_logout[0]);
         
         }
 
