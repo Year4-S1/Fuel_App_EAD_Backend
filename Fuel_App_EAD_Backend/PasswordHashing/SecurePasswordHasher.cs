@@ -8,19 +8,14 @@ namespace Fuel_App_EAD_Backend.PasswordHashing
 {
     public class SecurePasswordHasher
     {
-        /// <summary>
-        /// Size of salt.
-        /// </summary>
+     
+        /// Size of salt.    
         private const int SaltSize = 16;
-
-        /// <summary>
-        /// Size of hash.
-        /// </summary>
+        
+        /// Size of hash.       
         private const int HashSize = 20;
-
-        /// <summary>
-        /// Creates a hash from a password.
-        /// </summary>
+        
+        /// Creates a hash from a password.       
         /// <param name="password">The password.</param>
         /// <param name="iterations">Number of iterations.</param>
         /// <returns>The hash.</returns>
@@ -45,10 +40,8 @@ namespace Fuel_App_EAD_Backend.PasswordHashing
             // Format hash with extra information
             return string.Format("$MYHASH$V1${0}${1}", iterations, base64Hash);
         }
-
-        /// <summary>
-        /// Creates a hash from a password with 10000 iterations
-        /// </summary>
+        
+        /// Creates a hash from a password with 10000 iterations       
         /// <param name="password">The password.</param>
         /// <returns>The hash.</returns>
         public static string Hash(string password)
@@ -56,7 +49,7 @@ namespace Fuel_App_EAD_Backend.PasswordHashing
             return Hash(password, 10000);
         }
 
-        /// <summary>
+      
         /// Checks if hash is supported.
         /// </summary>
         /// <param name="hashString">The hash.</param>
@@ -65,10 +58,8 @@ namespace Fuel_App_EAD_Backend.PasswordHashing
         {
             return hashString.Contains("$MYHASH$V1$");
         }
-
-        /// <summary>
-        /// Verifies a password against a hash.
-        /// </summary>
+    
+        /// Verifies a password against a hash.       
         /// <param name="password">The password.</param>
         /// <param name="hashedPassword">The hash.</param>
         /// <returns>Could be verified?</returns>

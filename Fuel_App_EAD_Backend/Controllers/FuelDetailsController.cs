@@ -56,5 +56,15 @@ namespace Fuel_App_EAD_Backend.Controllers
 
             return new JsonResult(updated_fuel[0]);
         }
+
+        [HttpGet("perfuel/{id}/{fuel}")]
+        public JsonResult GetFuelDetailsPerStationPerFuel(string id , string fuel)
+        {
+            MongoClient dbClient = new MongoClient(_configuration.GetConnectionString("FuelApp"));
+
+            var per_Station_fuel_list = dbClient.GetDatabase("fuelappdb").GetCollection<FuelDetails>("fueldetail").Find(fueldetail => fueldetail.StationId == id && fueldetail.FuelType.ToLower() == fuel.ToLower()).ToList();
+
+            return new JsonResult(per_Station_fuel_list[0]);
+        }
     }
 }
