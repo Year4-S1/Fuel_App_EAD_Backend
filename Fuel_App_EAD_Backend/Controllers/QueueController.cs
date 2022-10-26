@@ -76,8 +76,8 @@ namespace Fuel_App_EAD_Backend.Controllers
 
             //counting the vehicles in the queue per station
             int QueueCarCount = dbClient.GetDatabase("fuelappdb").GetCollection<Queue>("queue").AsQueryable().Count(queue => queue.StationId == id && queue.VehicleType.ToLower() == "car".ToLower() && queue.Status.ToLower() == "Joined".ToLower() && queue.QueueDate == DateTime.Now.ToString("dd/MM/yyyy"));
-            int QueueMotorCycleCount = dbClient.GetDatabase("fuelappdb").GetCollection<Queue>("queue").AsQueryable().Count(queue => queue.StationId == id && queue.VehicleType.ToLower() == "motor cycle".ToLower() && queue.Status.ToLower() == "Joined".ToLower() && queue.QueueDate == DateTime.Now.ToString("dd/MM/yyyy"));
-            int QueueThreeWheelersCount = dbClient.GetDatabase("fuelappdb").GetCollection<Queue>("queue").AsQueryable().Count(queue => queue.StationId == id && queue.VehicleType.ToLower() == "three-wheelers".ToLower() && queue.Status.ToLower() == "Joined".ToLower() && queue.QueueDate == DateTime.Now.ToString("dd/MM/yyyy"));
+            int QueueMotorCycleCount = dbClient.GetDatabase("fuelappdb").GetCollection<Queue>("queue").AsQueryable().Count(queue => queue.StationId == id && queue.VehicleType.ToLower() == "motorCycle".ToLower() && queue.Status.ToLower() == "Joined".ToLower() && queue.QueueDate == DateTime.Now.ToString("dd/MM/yyyy"));
+            int QueueThreeWheelersCount = dbClient.GetDatabase("fuelappdb").GetCollection<Queue>("queue").AsQueryable().Count(queue => queue.StationId == id && queue.VehicleType.ToLower() == "threeWheelers".ToLower() && queue.Status.ToLower() == "Joined".ToLower() && queue.QueueDate == DateTime.Now.ToString("dd/MM/yyyy"));
             int QueueVanCount = dbClient.GetDatabase("fuelappdb").GetCollection<Queue>("queue").AsQueryable().Count(queue => queue.StationId == id && queue.VehicleType.ToLower() == "van".ToLower() && queue.Status.ToLower() == "Joined".ToLower() && queue.QueueDate == DateTime.Now.ToString("dd/MM/yyyy"));
             int QueueLorryCount = dbClient.GetDatabase("fuelappdb").GetCollection<Queue>("queue").AsQueryable().Count(queue => queue.StationId == id && queue.VehicleType.ToLower() == "lorry".ToLower() && queue.Status.ToLower() == "Joined".ToLower() && queue.QueueDate == DateTime.Now.ToString("dd/MM/yyyy"));
             int QueueBusCount = dbClient.GetDatabase("fuelappdb").GetCollection<Queue>("queue").AsQueryable().Count(queue => queue.StationId == id && queue.VehicleType.ToLower() == "bus".ToLower() && queue.Status.ToLower() == "Joined".ToLower() && queue.QueueDate == DateTime.Now.ToString("dd/MM/yyyy"));                     
@@ -88,7 +88,7 @@ namespace Fuel_App_EAD_Backend.Controllers
             Dictionary<string , int> QueueVehicleCountN = new Dictionary<string, int>();
             QueueVehicleCountN.Add("Car", QueueCarCount);
             QueueVehicleCountN.Add("MotorCycle", QueueMotorCycleCount);
-            QueueVehicleCountN.Add("Three-Wheelers", QueueThreeWheelersCount);
+            QueueVehicleCountN.Add("ThreeWheelers", QueueThreeWheelersCount);
             QueueVehicleCountN.Add("Van", QueueVanCount);
             QueueVehicleCountN.Add("Lorry", QueueLorryCount);
             QueueVehicleCountN.Add("Bus", QueueBusCount);
