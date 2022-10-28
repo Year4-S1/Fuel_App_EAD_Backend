@@ -70,22 +70,10 @@ namespace Fuel_App_EAD_Backend.Controllers
             MongoClient dbClient = new MongoClient(_configuration.GetConnectionString("FuelApp"));
 
             var ownerId = id;
-
-            //check if the stain name is not null
            
-            var dbList = dbClient.GetDatabase("fuelappdb").GetCollection<Station>("station").Find(station => station.StationOwnerId.ToLower() == ownerId.ToLower() ).ToList();
+            var dbList = dbClient.GetDatabase("fuelappdb").GetCollection<Station>("station").Find(station => station.StationOwnerId.ToLower() == ownerId.ToLower() ).ToList();                 
 
-                //filtering by the queueId
-               // var filter = Builders<Station>.Filter.Eq("StationOwnerId", ownerId);
-                //updating the queueDepartureTome and the status of a queue
-               // var update = Builders<Station>.Update.Set("QueueDepatureTime", DateTime.Now.ToString("HH:mm:ss")).Set("Status", "Exit");
-               // dbClient.GetDatabase("fuelappdb").GetCollection<Station>("station").UpdateOne(filter, update);
-                //filtering the updated document
-                //var updated_logout = dbClient.GetDatabase("fuelappdb").GetCollection<Station>("station").Find(station => station.Id == queueId).ToList();
-
-
-
-             return new JsonResult(dbList[0]);
+            return new JsonResult(dbList[0]);
            
         }
     }
