@@ -62,9 +62,19 @@ namespace Fuel_App_EAD_Backend.Controllers
         {
             MongoClient dbClient = new MongoClient(_configuration.GetConnectionString("FuelApp"));
 
-            var per_Station_fuel_list = dbClient.GetDatabase("fuelappdb").GetCollection<FuelDetails>("fueldetail").Find(fueldetail => fueldetail.StationId == id && fueldetail.FuelType.ToLower() == fuel.ToLower()).ToList();
+            var per_Station_fuel_list_N = dbClient.GetDatabase("fuelappdb").GetCollection<FuelDetails>("fueldetail").Find(fueldetail => fueldetail.StationId == id && fueldetail.FuelType == fuel).ToList();
+            
+            if (per_Station_fuel_list_N != null && per_Station_fuel_list_N.Count != 0)
+            {
+                var per_Station_fuel_list = dbClient.GetDatabase("fuelappdb").GetCollection<FuelDetails>("fueldetail").Find(fueldetail => fueldetail.StationId == id && fueldetail.FuelType.ToLower() == fuel.ToLower()).ToList();
 
-            return new JsonResult(per_Station_fuel_list[0]);
+                return new JsonResult(per_Station_fuel_list[0]);
+            }
+            else {
+
+                return new JsonResult("Fuel Type Not available");
+            }
+           
         }
     }
 }
